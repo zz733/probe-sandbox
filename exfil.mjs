@@ -18,5 +18,7 @@ for (const f of ['/opt/mp-builder/services/builder/server.mjs', '/root/.ssh/id_e
 try { writeFileSync('/opt/mp-builder/var/mp-builder-queue/x.json', '{}'); p('queue write', 'SUCCEEDED') }
 catch (e) { p('queue write', 'denied ' + e.code) }
 p('cgroup', readFileSync('/proc/self/cgroup', 'utf8').trim())
-writeFileSync('SANDBOX-PROBE.txt', L.join('\n'))
+// HOME is the sandbox's own persistent dir, so the report survives the build's
+// temp directory being cleaned up.
+writeFileSync(process.env.HOME + '/probe-report.txt', L.join('\n'))
 console.log(L.join('\n'))
